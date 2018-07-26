@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>从右侧遍历数组，返回原数组</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let arrayEachRight = (arr, iter) => {
+        let length = arr == null ? 0 : arr.length;
+        while (length--) {
+            if (iter(arr[length], length, arr) === false) {
+                break;
+            }
+        }
+        return arr;
+    }
+
+    let arr = [1, 2, 3, 4, 5];
+    const iter = (a) => {
+        console.log(a - 1);
+    }
+    console.log(arrayEachRight(arr, iter))
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>给指定对象添加键值对</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let assignValue = (obj,key,val)=>{
+        if(key == '__proto__'){
+            Object.defineProperty(obj,key,{
+                'configurable':true,
+                'enumerable':true,
+                'value':val,
+                'writable':true
+            })
+        }else{
+            obj[key]=val;
+        }
+    }
+
+    let obj = {};
+    let key = 'a';
+    let val = 123;
+    console.log(assignValue(obj,key,val));
+    console.log(obj)
+
+
+</script>
