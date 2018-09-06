@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     //使用递归的方法，将obj变为obj2的格式(拼多多2018前端笔试真题)
+obj = [
+    {id:1,parent:null},
+    {id:2,parent:1},
+    {id:3,parent:2}
+]
+
+// obj2 = {
+//     obj:{
+//         id: 1,
+//         parent: null,
+//         child: {
+//             id: 2,
+//             parent: 1,
+//             child: {
+//                 id: 3,
+//                 parent: 2
+//             }
+//         }
+//     }
+// }
+
+// let changeObj = arr =>{
+//     let obj1 = {};
+//     // arr = arr.reverse();
+
+//     for (let i in arr){
+
+//     }
+
+
+
+//     // let obj3 = arr.map((item,index)=>{
+//     //     if(index==0){
+//     //         obj1.child =item;
+//     //     }else if(index == arr.length-1){
+
+//     //     }else{
+
+//     //     }
+      
+//     // })
+// }
+
+
+var obj2 = {};
+function createObj2(obj, child){
+    if(child.parent){
+        if(obj.obj){
+            createObj2(obj.obj, child);
+        }else{
+            if(obj.id === child.parent){
+                obj.child = {
+                    id: child.id,
+                    parent: child.parent,
+                }
+            }else{
+                if(obj.child){
+                    createObj2(obj.child, child);
+                }else{
+                    console.log('obj2未匹配到对应的parent对应关系')
+                }
+            }
+        }
+    }else{
+        obj.obj = {
+            id: child.id,
+            parent: child.parent,
+            child: {}
+        }
+    }
+}
+obj.forEach((item, item_i) => {
+    createObj2(obj2, item)
+})
+console.log('obj2:', obj2)
+
+
+
+</script>

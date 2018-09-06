@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .box{
+            position: relative;
+        }
+        ul{
+            display: flex;
+            position: absolute;
+            z-index: 2;
+        }
+        li{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-left: 1px solid black;
+        }
+        li.w{
+            width: 150px;
+        }
+        .mark{
+            position: absolute;
+            z-index: 1;
+            width: 50px;
+            height: 30px;
+            background-color: yellow;
+        }
+        a{
+            position: absolute;
+            top:110px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="mark"></div>
+        <ul id='nav'>
+            <li>首页</li>
+            <li>专栏</li>
+            <li>玩法</li>
+            <li class="w">需求</li>
+            <li class="w">合作</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+<script>
+    const tipData = [
+        {
+            name:'首页',
+            left:0,
+            bgwidth:50,
+        },
+        {
+            name:'专栏',
+            left:50,
+            bgwidth:50,
+        },
+        {
+            name:'玩法',
+            left:100,
+            bgwidth:50,
+        },
+        {
+            name:'需求',
+            left:150,
+            bgwidth:150,
+        },
+        {
+            name:'合作',
+            left:300,
+            bgwidth:150,
+        }
+    ]
+
+    let mark = document.getElementsByClassName('mark')[0];
+    let lis = document.getElementsByTagName('li');
+    let hash = document.location.hash ||'home';
+    Array.prototype.slice.call(lis).forEach((item,index)=>{
+        item.onmouseenter= function(){
+            console.log(item)
+            mark.style.left = tipData[index].left+'px';
+            mark.style.width = tipData[index].bgwidth+'px';
+        }
+        item.onmouseout = function(){
+            mark.style.left = 0+'px';
+            mark.style.width = tipData[0].bgwidth+'px';
+        }
+
+    })
+
+
+
+
+
+</script>
